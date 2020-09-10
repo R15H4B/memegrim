@@ -4,15 +4,10 @@ from discord.ext import commands
 import asyncio
 import praw
 import random
-import json
-
-# Reads file where credentials are stored
-with open('account.json', 'r') as from_file:
-    data = from_file.read()
-credentials = json.loads(data)
+imoirt os
 
 client = discord.Client()
-reddit = praw.Reddit(client_id = credentials['client_id'], client_secret = credentials['client_secret'], username = credentials['username'], password = credentials['password'], user_agent = 'Memebot')
+reddit = praw.Reddit(client_id = os.environ['client_id'], client_secret = os.environ['client_secret'], username = os.environ['username'], password = os.environ['password'], user_agent = 'Memebot')
 
 @client.event
 async def on_ready():
@@ -37,4 +32,4 @@ async def on_message(message):
             except Exception:
                 await message.channel.send('No match found!')
 
-client.run(credentials['token'])
+client.run(os.environ['token'])
