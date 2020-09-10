@@ -11,7 +11,7 @@ reddit = praw.Reddit(client_id = os.environ['client_id'], client_secret = os.env
 
 @client.event
 async def on_ready():
-    await client.change_presence(status=discord.Status.online, activity=discord.Game(name="!help | Dev by R15H4B"))
+    await client.change_presence(status=discord.Status.online, activity=discord.Game(name="!help"))
     print("Bot is online!")
 
 # Checks whenever a message is sent by a user
