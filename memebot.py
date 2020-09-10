@@ -31,12 +31,5 @@ async def on_message(message):
                     await message.channel.send('Not supported!')
             except Exception:
                 await message.channel.send('No match found!')
-                
-@client.event
-async def on_message(message):
-    if message.content.startswith('!'):
-        if message.content.find('help') == -1:
-            await message.channel.send('List of commands:\n\n!help- To get this menu.\n!meme, !funny, etc- To gets memes and stuff.\n!nsfw- To get not safe for work images.')
-        
 
 client.run(os.environ['token'])
