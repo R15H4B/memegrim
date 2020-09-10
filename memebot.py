@@ -11,7 +11,7 @@ reddit = praw.Reddit(client_id = os.environ['client_id'], client_secret = os.env
 
 @client.event
 async def on_ready():
-    await client.change_presence(status=discord.Status.online, activity=discord.Activity(type=discord.ActivityType.listening, name="!meme"))
+    await client.change_presence(status=discord.Status.online, activity=discord.Game(name="!meme | Dev by R15H4B"))
     print("Bot is online!")
 
 # Checks whenever a message is sent by a user
@@ -31,5 +31,10 @@ async def on_message(message):
                     await message.channel.send('Not supported!')
             except Exception:
                 await message.channel.send('No match found!')
+                
+@client.event
+async def on_message(message):
+    if message.content.startswith('!help'):
+        await message.channel.send('List of commands:\n!help- To get this menu.\n!meme,!funny,etc- To gets memes and stuff.\n!nsfw- To get not safe for work images.')
 
 client.run(os.environ['token'])
