@@ -34,7 +34,7 @@ async def on_message(message):
                 
 @client.event
 async def on_message(message):
-    if message.content.startswith('!'):
+    if message.content.startswith('$'):
         if message.content.find(' ') == -1:
             try:
 			cid = getCID(update)
