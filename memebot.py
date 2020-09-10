@@ -22,7 +22,7 @@ async def on_message(message):
         if message.content.find(' ') == -1:
             try:
                 result = ''
-                subreddit = reddit.subreddit(message.content[1:])
+                subreddit = reddit.subreddit(message.content[4:])
                 post = subreddit.random()
                 if hasattr(post, 'url'):
                     result += '\n' + post.url
