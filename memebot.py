@@ -35,6 +35,6 @@ async def on_message(message):
 @client.event
 async def on_message(message):
     if message.content.startswith('!help'):
-        await message.channel.send('List of commands:\n!help- To get this menu.\n!meme,!funny,etc- To gets memes and stuff.\n!nsfw- To get not safe for work images.')
+        await message.channel.send('List of commands:\n\n!help- To get this menu.\n!meme, !funny, etc- To gets memes and stuff.\n!nsfw- To get not safe for work images.')
 
 client.run(os.environ['token'])
