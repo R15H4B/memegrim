@@ -18,11 +18,11 @@ async def on_ready():
 # Checks whenever a message is sent by a user
 @client.event
 async def on_message(message):
-    if message.content.startswith('pls '):
+    if message.content.startswith('!'):
         if message.content.find(' ') == -1:
             try:
                 result = ''
-                subreddit = reddit.subreddit(message.content[4:])
+                subreddit = reddit.subreddit(message.content[1:])
                 post = subreddit.random()
                 if hasattr(post, 'url'):
                     result += '\n' + post.url
