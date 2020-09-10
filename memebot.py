@@ -5,7 +5,6 @@ import asyncio
 import praw
 import random
 import os
-import requests
 
 client = discord.Client()
 reddit = praw.Reddit(client_id = os.environ['client_id'], client_secret = os.environ['client_secret'], username = os.environ['username'], password = os.environ['password'], user_agent = 'MemeGrim')
