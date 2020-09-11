@@ -1,0 +1,14 @@
+{
+  "token": "process.env.token",
+  "join_message": "process.env.join_message",
+  "owners": [
+    "process.env.owners"
+  ],
+  "prefix": [
+    "process.env.prefix"
+  ],
+  "playing": "games!",
+  "playing_type": "playing|watching|listening",
+  "status_type": "online|idle|dnd",
+  "version": "1.0"
+}
