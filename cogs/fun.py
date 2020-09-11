@@ -53,7 +53,7 @@ class Fun_Commands(commands.Cog):
     @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
     async def comic(self, ctx):
         """ Posts a random comic """
-        subreddit = reddit.subreddit('comic' or 'comics')
+        subreddit = reddit.subreddit('comics')
         post = subreddit.random()
         await ctx.send(post.url)
         
