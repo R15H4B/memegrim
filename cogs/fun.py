@@ -56,6 +56,14 @@ class Fun_Commands(commands.Cog):
         subreddit = reddit.subreddit('comic' or 'comics')
         post = subreddit.random()
         await ctx.send(post.url)
+        
+    @commands.command()
+    @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
+    async def nsfw(self, ctx):
+        """ Posts a random nsfw stuff(18+) """
+        subreddit = reddit.subreddit('nsfw')
+        post = subreddit.random()
+        await ctx.send(post.url)
 
     @commands.command()
     @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
