@@ -68,11 +68,10 @@ class Fun_Commands(commands.Cog):
     @commands.command()
     @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
     async def meme(self, ctx):
-        async with ctx.channel.typing():
-            """ Posts a random meme """
-            subreddit = reddit.subreddit('meme')
-            post = subreddit.random()
-            await ctx.send(post.url)
+        """ Posts a random meme """
+        subreddit = reddit.subreddit('meme')
+        post = subreddit.random()
+        await ctx.send(post.url)
 
     @commands.command()
     @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
