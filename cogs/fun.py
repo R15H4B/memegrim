@@ -9,6 +9,7 @@ import aiohttp
 import re
 import praw
 import os
+import urllib
 
 from io import BytesIO
 from discord.ext import commands
