@@ -2,7 +2,7 @@
   "token": "process.env.token",
   "join_message": "process.env.join_message",
   "owners": [
-    "process.env.owners"
+    690090085059919933
   ],
   "prefix": [
     "process.env.prefix"
