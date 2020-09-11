@@ -17,7 +17,7 @@ async def on_ready():
 # Checks whenever a message is sent by a user
 @client.event
 async def on_message(message):
-    if message.content.startswith('!'):
+    if message.content.startswith('gib '):
         if message.content.find(' ') == -1:
             try:
                 result = ''
