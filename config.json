@@ -7,7 +7,7 @@
   "prefix": [
     "process.env.prefix"
   ],
-  "playing": "!help | !meme",
+  "playing": "!help",
   "playing_type": "playing|watching|listening",
   "status_type": "online|idle|dnd",
   "version": "1.0",
