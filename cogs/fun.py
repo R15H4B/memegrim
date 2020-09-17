@@ -300,7 +300,7 @@ class Fun_Commands(commands.Cog):
     @commands.cooldown(rate=1, per=3.0, type=commands.BucketType.user)
     async def slot(self, ctx):
         """ Roll the slot machine """
-        emojis = ":apple::tangerine::pear::lemon::watermelon::grapes::strawberry::cherries:"
+        emojis = "🍎🍊🍐🍋🍉🍇🍓🍒"
         a = random.choice(emojis)
         b = random.choice(emojis)
         c = random.choice(emojis)
