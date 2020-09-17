@@ -1,11 +1,7 @@
 {
-  "token": "process.env.token",
   "join_message": "I have joined to do stuff 🌟",
   "owners": [
     690090085059919933
-  ],
-  "prefix": [
-    "process.env.prefix"
   ],
   "playing": "!help",
   "playing_type": "playing|watching|listening",
