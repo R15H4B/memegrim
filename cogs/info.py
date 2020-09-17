@@ -19,9 +19,9 @@ class Information(commands.Cog):
         """ Pong! """
         before = time.monotonic()
         before_ws = int(round(self.bot.latency * 1000, 1))
-        message = await ctx.send("🏓 Pong")
+        message = await ctx.send(":ping_pong: Pong")
         ping = (time.monotonic() - before) * 1000
-        await message.edit(content=f"🏓 WS: {before_ws}ms  |  REST: {int(ping)}ms")
+        await message.edit(content=f":ping_pong: WS: {before_ws}ms  |  REST: {int(ping)}ms")
 
     @commands.command(aliases=['joinme', 'join', 'botinvite'])
     async def invite(self, ctx):
@@ -32,7 +32,7 @@ class Information(commands.Cog):
     async def botserver(self, ctx):
         """ Get an invite to our support server! """
         if isinstance(ctx.channel, discord.DMChannel) or ctx.guild.id != 690090085059919933:
-            return await ctx.send(f"**Here you go {ctx.author.name} 🍻**\n" + os.environ['botserver'])
+            return await ctx.send(f"**Here you go {ctx.author.name} :beers:**\n" + os.environ['botserver'])
 
         await ctx.send(f"**{ctx.author.name}** this is my home you know :3")
 
@@ -57,7 +57,7 @@ class Information(commands.Cog):
         embed.add_field(name="Commands loaded", value=len([x.name for x in self.bot.commands]), inline=True)
         embed.add_field(name="RAM", value=f"{ramUsage:.2f} MB", inline=True)
 
-        await ctx.send(content=f"ℹ About **{ctx.bot.user}** | **{self.config.version}**", embed=embed)
+        await ctx.send(content=f":information_source: About **{ctx.bot.user}** | **{self.config.version}**", embed=embed)
 
 
 def setup(bot):
