@@ -277,13 +277,13 @@ class Fun_Commands(commands.Cog):
         r = random.randint(1, 100)
         hot = r / 1.17
 
-        emoji = "💔"
+        emoji = ":broken_heart:"
         if hot > 25:
-            emoji = "❤"
+            emoji = ":heart:"
         if hot > 50:
-            emoji = "💖"
+            emoji = ":sparkling_heart:"
         if hot > 75:
-            emoji = "💞"
+            emoji = ":revolving_hearts:"
 
         await ctx.send(f"**{user.name}** is **{hot:.2f}%** hot {emoji}")
 
