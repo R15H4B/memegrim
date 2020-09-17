@@ -51,7 +51,7 @@ def actionmessage(case, mass=False):
     if mass is True:
         output = f"**{case}** the IDs/Users"
 
-    return f"✅ Successfully {output}"
+    return f":white_check_mark: Successfully {output}"
 
 
 async def prettyResults(ctx, filename: str = "Results", resultmsg: str = "Here's the results:", loop=None):
