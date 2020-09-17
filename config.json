@@ -1,6 +1,6 @@
 {
   "token": "process.env.token",
-  "join_message": "process.env.join_message",
+  "join_message": "process.env.joinmessage",
   "owners": [
     690090085059919933
   ],
@@ -11,5 +11,5 @@
   "playing_type": "playing|watching|listening",
   "status_type": "online|idle|dnd",
   "version": "1.0",
-  "botserver": "https://discord.gg/84KEvEm"
+  "botserver": "process.env.botserver"
 }
