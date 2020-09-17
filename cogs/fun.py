@@ -68,12 +68,6 @@ class Fun_Commands(commands.Cog):
 
     @commands.command()
     @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
-    async def joke(self, ctx):
-        """ Posts a random joke """
-        await ctx.send('https://sv443.net/jokeapi/v2/joke/Any?blacklistFlags=nsfw,political,sexist&format=txt')
-
-    @commands.command()
-    @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
     async def meme(self, ctx):
         """ Posts a random meme """
         subreddit = reddit.subreddit('meme')
