@@ -34,7 +34,7 @@ class HelpFormat(DefaultHelpCommand):
     async def send_pages(self, no_pm: bool = False):
         try:
             if permissions.can_react(self.context):
-                await self.context.message.add_reaction(':envelope:')
+                await self.context.message.add_reaction(chr(0x2709))
         except discord.Forbidden:
             pass
 
