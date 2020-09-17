@@ -60,13 +60,13 @@ class Discord_Info(commands.Cog):
                     offline.append(f"**{user}**")
 
         if online:
-            message += f"🟢 {', '.join(online)}\n"
+            message += f":green_circle: {', '.join(online)}\n"
         if idle:
-            message += f"🟡 {', '.join(idle)}\n"
+            message += f":orange_circle: {', '.join(idle)}\n"
         if dnd:
-            message += f"🔴 {', '.join(dnd)}\n"
+            message += f":red_circle: {', '.join(dnd)}\n"
         if offline:
-            message += f"⚫ {', '.join(offline)}\n"
+            message += f":black_circle: {', '.join(offline)}\n"
 
         await ctx.send(f"Mods in **{ctx.guild.name}**\n{message}")
 
