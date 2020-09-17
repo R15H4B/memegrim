@@ -72,7 +72,7 @@ class Fun_Commands(commands.Cog):
     async def joke(self, ctx):
         """ Posts a random joke """
         response = requests.get('https://sv443.net/jokeapi/v2/joke/Any?blacklistFlags=nsfw,political,sexist&format=txt')
-        await ctx.send(response.content)
+        await ctx.send(response.text)
 
     @commands.command()
     @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
