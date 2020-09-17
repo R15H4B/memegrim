@@ -3,6 +3,8 @@ import discord
 from utils import permissions
 from discord.ext.commands import AutoShardedBot, DefaultHelpCommand
 
+emojix = client.get_emoji(756151274231038045)
+
 
 class Bot(AutoShardedBot):
     def __init__(self, *args, prefix=None, **kwargs):
@@ -34,7 +36,7 @@ class HelpFormat(DefaultHelpCommand):
     async def send_pages(self, no_pm: bool = False):
         try:
             if permissions.can_react(self.context):
-                await self.context.message.add_reaction(chr(0x2709))
+                await self.context.message.add_reaction(emojix)
         except discord.Forbidden:
             pass
 
