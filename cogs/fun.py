@@ -27,7 +27,7 @@ class Fun_Commands(commands.Cog):
     async def eightball(self, ctx, *, question: commands.clean_content):
         """ Consult 8ball to receive an answer """
         answer = random.choice(lists.ballresponse)
-        await ctx.send(f"🎱 **Question:** {question}\n**Answer:** {answer}")
+        await ctx.send(f":8ball: **Question:** {question}\n**Answer:** {answer}")
 
     async def randomimageapi(self, ctx, url, endpoint):
         try:
@@ -113,7 +113,7 @@ class Fun_Commands(commands.Cog):
     @commands.command()
     async def f(self, ctx, *, text: commands.clean_content = None):
         """ Press F to pay respect """
-        hearts = ['❤', '💛', '💚', '💙', '💜']
+        hearts = [':heart:', ':yellow_heart:', ':green_heart:', ':blue_heart:', ':purple_heart:']
         reason = f"for **{text}** " if text else ""
         await ctx.send(f"**{ctx.author.name}** has paid their respect {reason}{random.choice(hearts)}")
 
@@ -207,7 +207,7 @@ class Fun_Commands(commands.Cog):
                 definition = definition.rsplit(' ', 1)[0]
                 definition += '...'
 
-            await ctx.send(f"📚 Definitions for **{result['word']}**```fix\n{definition}```")
+            await ctx.send(f":books: Definitions for **{result['word']}**```fix\n{definition}```")
 
     @commands.command()
     async def reverse(self, ctx, *, text: str):
@@ -215,7 +215,7 @@ class Fun_Commands(commands.Cog):
         Everything you type after reverse will of course, be reversed
         """
         t_rev = text[::-1].replace("@", "@\u200B").replace("&", "&\u200B")
-        await ctx.send(f"🔁 {t_rev}")
+        await ctx.send(f":repeat: {t_rev}")
 
     @commands.command()
     async def password(self, ctx, nbytes: int = 18):
