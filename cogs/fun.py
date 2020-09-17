@@ -238,11 +238,11 @@ class Fun_Commands(commands.Cog):
 
     @commands.command()
     async def beer(self, ctx, user: discord.Member = None, *, reason: commands.clean_content = ""):
-        """ Give someone a beer! 🍻 """
+        """ Give someone a beer! :bears: """
         if not user or user.id == ctx.author.id:
             return await ctx.send(f"**{ctx.author.name}**: paaaarty!🎉🍺")
         if user.id == self.bot.user.id:
-            return await ctx.send("*drinks beer with you* 🍻")
+            return await ctx.send("*drinks beer with you* :bears:")
         if user.bot:
             return await ctx.send(f"I would love to give beer to the bot **{ctx.author.name}**, but I don't think it will respond to you :/")
 
@@ -251,14 +251,14 @@ class Fun_Commands(commands.Cog):
         msg = await ctx.send(beer_offer)
 
         def reaction_check(m):
-            if m.message_id == msg.id and m.user_id == user.id and str(m.emoji) == "🍻":
+            if m.message_id == msg.id and m.user_id == user.id and str(m.emoji) == ":bears:":
                 return True
             return False
 
         try:
-            await msg.add_reaction("🍻")
+            await msg.add_reaction(":bears:")
             await self.bot.wait_for('raw_reaction_add', timeout=30.0, check=reaction_check)
-            await msg.edit(content=f"**{user.name}** and **{ctx.author.name}** are enjoying a lovely beer together 🍻")
+            await msg.edit(content=f"**{user.name}** and **{ctx.author.name}** are enjoying a lovely beer together :bears:")
         except asyncio.TimeoutError:
             await msg.delete()
             await ctx.send(f"well, doesn't seem like **{user.name}** wanted a beer with you **{ctx.author.name}** ;-;")
