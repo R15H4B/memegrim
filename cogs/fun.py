@@ -240,13 +240,13 @@ class Fun_Commands(commands.Cog):
     async def beer(self, ctx, user: discord.Member = None, *, reason: commands.clean_content = ""):
         """ Give someone a beer! :bears: """
         if not user or user.id == ctx.author.id:
-            return await ctx.send(f"**{ctx.author.name}**: paaaarty!🎉🍺")
+            return await ctx.send(f"**{ctx.author.name}**: paaaarty!🎉:bear:")
         if user.id == self.bot.user.id:
             return await ctx.send("*drinks beer with you* :bears:")
         if user.bot:
             return await ctx.send(f"I would love to give beer to the bot **{ctx.author.name}**, but I don't think it will respond to you :/")
 
-        beer_offer = f"**{user.name}**, you got a 🍺 offer from **{ctx.author.name}**"
+        beer_offer = f"**{user.name}**, you got a :bear: offer from **{ctx.author.name}**"
         beer_offer = beer_offer + f"\n\n**Reason:** {reason}" if reason else beer_offer
         msg = await ctx.send(beer_offer)
 
@@ -264,7 +264,7 @@ class Fun_Commands(commands.Cog):
             await ctx.send(f"well, doesn't seem like **{user.name}** wanted a beer with you **{ctx.author.name}** ;-;")
         except discord.Forbidden:
             # Yeah so, bot doesn't have reaction permission, drop the "offer" word
-            beer_offer = f"**{user.name}**, you got a 🍺 from **{ctx.author.name}**"
+            beer_offer = f"**{user.name}**, you got a :bear: from **{ctx.author.name}**"
             beer_offer = beer_offer + f"\n\n**Reason:** {reason}" if reason else beer_offer
             await msg.edit(content=beer_offer)
 
