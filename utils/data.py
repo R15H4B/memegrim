@@ -3,7 +3,7 @@ import discord
 from utils import permissions
 from discord.ext.commands import AutoShardedBot, DefaultHelpCommand
 
-emojix = client.get_emoji(756151274231038045)
+emojix = '\N{ENVELOPE}'
 
 
 class Bot(AutoShardedBot):
