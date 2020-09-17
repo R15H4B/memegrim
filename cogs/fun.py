@@ -10,6 +10,7 @@ import re
 import praw
 import os
 import urllib
+import requests
 
 from io import BytesIO
 from discord.ext import commands
@@ -70,7 +71,7 @@ class Fun_Commands(commands.Cog):
     @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
     async def joke(self, ctx):
         """ Posts a random joke """
-        await ctx.send('https://sv443.net/jokeapi/v2/joke/Any?blacklistFlags=nsfw,political,sexist&format=txt')
+        await ctx.send(requests.get('https://sv443.net/jokeapi/v2/joke/Any?blacklistFlags=nsfw,political,sexist&format=txt'))
 
     @commands.command()
     @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
