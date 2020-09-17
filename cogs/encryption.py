@@ -54,16 +54,16 @@ class Encryption(commands.Cog):
 
                 try:
                     return await ctx.send(
-                        content=f"📑 **{convert}**",
+                        content=f":bookmark_tabs: **{convert}**",
                         file=discord.File(data, filename=default.timetext("Encryption"))
                     )
                 except discord.HTTPException:
                     return await ctx.send(f"The file I returned was over 8 MB, sorry {ctx.author.name}...")
 
             try:
-                await ctx.send(f"📑 **{convert}**```fix\n{input.decode('UTF-8')}```")
+                await ctx.send(f":bookmark_tabs: **{convert}**```fix\n{input.decode('UTF-8')}```")
             except AttributeError:
-                await ctx.send(f"📑 **{convert}**```fix\n{input}```")
+                await ctx.send(f":bookmark_tabs: **{convert}**```fix\n{input}```")
 
     @encode.command(name="base32", aliases=["b32"])
     async def encode_base32(self, ctx, *, input: commands.clean_content = None):
