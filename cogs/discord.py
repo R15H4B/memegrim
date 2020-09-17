@@ -91,7 +91,7 @@ class Discord_Info(commands.Cog):
             embed.add_field(name="Owner", value=ctx.guild.owner, inline=True)
             embed.add_field(name="Region", value=ctx.guild.region, inline=True)
             embed.add_field(name="Created", value=default.date(ctx.guild.created_at), inline=True)
-            await ctx.send(content=f"ℹ information about **{ctx.guild.name}**", embed=embed)
+            await ctx.send(content=f":information_source: information about **{ctx.guild.name}**", embed=embed)
 
     @server.command(name="avatar", aliases=["icon"])
     async def server_avatar(self, ctx):
@@ -131,7 +131,7 @@ class Discord_Info(commands.Cog):
             inline=False
         )
 
-        await ctx.send(content=f"ℹ About **{user.id}**", embed=embed)
+        await ctx.send(content=f":information_source: About **{user.id}**", embed=embed)
 
 
 def setup(bot):
