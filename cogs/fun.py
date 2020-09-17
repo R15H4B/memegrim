@@ -228,7 +228,7 @@ class Fun_Commands(commands.Cog):
             return await ctx.send("I only accept any numbers between 3-1400")
         if hasattr(ctx, 'guild') and ctx.guild is not None:
             await ctx.send(f"Sending you a private message with your random generated password **{ctx.author.name}**")
-        await ctx.author.send(f"🎁 **Here is your password:**\n{secrets.token_urlsafe(nbytes)}")
+        await ctx.author.send(f":gift: **Here is your password:**\n{secrets.token_urlsafe(nbytes)}")
 
     @commands.command()
     async def rate(self, ctx, *, thing: commands.clean_content):
@@ -240,7 +240,7 @@ class Fun_Commands(commands.Cog):
     async def beer(self, ctx, user: discord.Member = None, *, reason: commands.clean_content = ""):
         """ Give someone a beer! :beers: """
         if not user or user.id == ctx.author.id:
-            return await ctx.send(f"**{ctx.author.name}**: paaaarty!🎉:beer:")
+            return await ctx.send(f"**{ctx.author.name}**: paaaarty!:tada: :beer:")
         if user.id == self.bot.user.id:
             return await ctx.send("*drinks beer with you* :beers:")
         if user.bot:
@@ -308,11 +308,11 @@ class Fun_Commands(commands.Cog):
         slotmachine = f"**[ {a} {b} {c} ]\n{ctx.author.name}**,"
 
         if (a == b == c):
-            await ctx.send(f"{slotmachine} All matching, you won! 🎉")
+            await ctx.send(f"{slotmachine} All matching, you won! :tada:")
         elif (a == b) or (a == c) or (b == c):
-            await ctx.send(f"{slotmachine} 2 in a row, you won! 🎉")
+            await ctx.send(f"{slotmachine} 2 in a row, you won! :tada:")
         else:
-            await ctx.send(f"{slotmachine} No match, you lost 😢")
+            await ctx.send(f"{slotmachine} No match, you lost :cry:")
 
 
 def setup(bot):
