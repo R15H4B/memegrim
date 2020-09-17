@@ -10,6 +10,5 @@
   "playing": "!help",
   "playing_type": "playing|watching|listening",
   "status_type": "online|idle|dnd",
-  "version": "1.0",
-  "botserver": "process.env.botserver"
+  "version": "1.3.4"
 }
