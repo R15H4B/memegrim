@@ -240,7 +240,7 @@ class Fun_Commands(commands.Cog):
     async def beer(self, ctx, user: discord.Member = None, *, reason: commands.clean_content = ""):
         """ Give someone a beer! :beers: """
         if not user or user.id == ctx.author.id:
-            return await ctx.send(f"**{ctx.author.name}**: paaaarty!:tada: :beer:")
+            return await ctx.send(f"**{ctx.author.name}**: paaaarty! :tada: :beer:")
         if user.id == self.bot.user.id:
             return await ctx.send("*drinks beer with you* :beers:")
         if user.bot:
