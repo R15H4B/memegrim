@@ -19,7 +19,7 @@ class Admin(commands.Cog):
     async def amiadmin(self, ctx):
         """ Are you an admin? """
         if ctx.author.id in self.config.owners:
-            return await ctx.send(f"Yes **{ctx.author.name}** you are an admin! ✅")
+            return await ctx.send(f"Yes **{ctx.author.name}** you are an admin! :white_check_mark:")
 
         # Please do not remove this part.
         # I would love to be credited as the original creator of the source code.
