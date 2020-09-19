@@ -94,6 +94,13 @@ class Fun_Commands(commands.Cog):
 
     @commands.command()
     @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
+    async def btc(self, ctx):
+        """ Posts a random joke """
+        response = requests.get('https://blockchain.info/tobtc?currency=USD&value=1')
+        await ctx.send("1$ = " + response.text +" BTC")
+
+    @commands.command()
+    @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
     async def cat(self, ctx):
         """ Posts a random cat """
         await self.randomimageapi(ctx, 'https://api.alexflipnote.dev/cats', 'file')
