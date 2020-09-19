@@ -97,7 +97,10 @@ class Fun_Commands(commands.Cog):
     async def btc(self, ctx):
         """ Posts a random joke """
         response = requests.get('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd')
-        await ctx.send("**1 BTC =** " + response.text +" **USD**")
+        txt = response.text
+        price = txt.replace('{"bitcoin":{"usd":', '**1 BTC =** ')
+        fprice = price.replace('}}', ' **USD**')
+        await ctx.send(fprice)
 
     @commands.command()
     @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
