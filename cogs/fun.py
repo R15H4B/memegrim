@@ -79,7 +79,7 @@ class Fun_Commands(commands.Cog):
         """ Greetings from bot to somone """
         user = user or ctx.author
         if user.id == self.bot.user.id:
-            return await ctx.send(f"Hello to myself!")
+            return await ctx.send(f"Greeting myself!")
         else:
             return await ctx.send(f"Hello **{user.name}**!")
         
