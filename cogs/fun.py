@@ -100,7 +100,7 @@ class Fun_Commands(commands.Cog):
         txt = response.text
         price = txt.replace('{"bitcoin":{"usd":', '**1 BTC =** ')
         fprice = price.replace('}}', ' **USD**')
-        await ctx.send(fprice)
+        await ctx.send(**fprice**)
 
     @commands.command()
     @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
