@@ -88,7 +88,7 @@ class Events(commands.Cog):
             playing_type = 0
 
         await self.bot.change_presence(
-            activity=discord.Activity(type=playing_type, name=self.config.playing),
+            activity=discord.Activity(type=playing_type, name=self.config.playing + 'Servers: ' + {len(self.bot.guilds)}),
             status=status_type
         )
 
