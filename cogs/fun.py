@@ -78,7 +78,7 @@ class Fun_Commands(commands.Cog):
     async def greet(self, ctx, *, user: discord.Member = None):
         """ Greetings from bot to somone """
         user = user or ctx.author
-        await ctx.send(f"Hello **{user.name} !**")
+        await ctx.send(f"Hello **{user.name}**!")
 
     @commands.command()
     @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
