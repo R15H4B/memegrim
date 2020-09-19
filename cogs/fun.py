@@ -75,7 +75,7 @@ class Fun_Commands(commands.Cog):
         await ctx.send(response.text)
 
     @commands.command()
-    async def hotcalc(self, ctx, *, user: discord.Member = None):
+    async def greet(self, ctx, *, user: discord.Member = None):
         """ Greetings from bot to somone """
         user = user or ctx.author
         await ctx.send(f"hello **{user.name}**" or "hi **{user.name}**")
