@@ -17,7 +17,7 @@ class Weather(commands.Cog, name='Weather'):
     @staticmethod
     def get_cast(city, forecast=False):
         if forecast:
-            return rget(f"http://api.openweathermap.org/data/2.5/forecast?q={city}&units=metric&APPID={environ['WEATHER_TOKEN']}").json()
+            return True, rget(f"http://api.openweathermap.org/data/2.5/forecast?q={city}&units=metric&APPID={environ['WEATHER_TOKEN']}").json()
         data  = rget(f"http://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&APPID={environ['WEATHER_TOKEN']}").json()
         try:
             cleared_data = {
@@ -31,24 +31,27 @@ class Weather(commands.Cog, name='Weather'):
                 'Sunset': (datetime.utcfromtimestamp(data['sys']['sunset']) + timedelta(hours=2)).strftime('%H:%M:%S'),
                 'Sunrise': (datetime.utcfromtimestamp(data['sys']['sunrise']) + timedelta(hours=2)).strftime('%H:%M:%S'),
             }
-            return cleared_data
+            return True, cleared_data
         except Exception as e:
             wrong_data = {
                 'Error': data['message'],
             }
-            return wrong_data
+            return False, wrong_data
 
     @commands.command(brief='weather [City]', description="Get weather forecast of a city")
     async def weather(self, ctx,  *, city):
-        data = Weather.get_cast(city)
-        embed = Embed(title=f":white_sun_small_cloud: Weather of {data['City']}:", color=0x1abc9c)
+        status, data = Weather.get_cast(city)
+        if not status: 
+            embed = Embed(title=f":white_sun_small_cloud: Weather of {data['City']}:", color=0x1abc9c)
+        else:
+            embed = Embed(title=f":City not found!", color=0x1abc9c)
         for key, value in data.items():
             embed.add_field(name=key, value=value)
 
-        data = Weather.get_cast(city, True)
-        days = {entry['dt_txt'][:10]: [] for entry in data['list']}
-        for index, entry in enumerate(data['list']):
-            days[entry['dt_txt'][:10]].append(f"{entry['dt_txt'][11:-3]} → {entry['weather'][0]['main']} - {entry['main']['temp']}°C\n")
+        # data = Weather.get_cast(city, True)
+        # days = {entry['dt_txt'][:10]: [] for entry in data['list']}
+        # for index, entry in enumerate(data['list']):
+        #     days[entry['dt_txt'][:10]].append(f"{entry['dt_txt'][11:-3]} → {entry['weather'][0]['main']} - {entry['main']['temp']}°C\n")
 
         msg = await ctx.send(embed=embed)
 
