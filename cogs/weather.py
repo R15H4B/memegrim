@@ -46,7 +46,7 @@ class Weather(commands.Cog, name='Weather'):
             for key, value in data.items():
                 embed.add_field(name=key, value=value)
         else:
-            embed = Embed(title=f"{data['Error']}!", color=0x1abc9c)
+            embed = Embed(title=f"{str(data['Error']).capitalize()}!", color=0x1abc9c)
 
         # data = Weather.get_cast(city, True)
         # days = {entry['dt_txt'][:10]: [] for entry in data['list']}
