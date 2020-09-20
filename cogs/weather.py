@@ -19,7 +19,7 @@ class Weather(commands.Cog, name='Weather'):
         if forecast:
             return rget(f"http://api.openweathermap.org/data/2.5/forecast?q={city}&units=metric&APPID={environ['WEATHER_TOKEN']}").json()
         data  = rget(f"http://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&APPID={environ['WEATHER_TOKEN']}").json()
-        if data['name']:
+        try:
             cleared_data = {
                 'City': data['name'],
                 'Weather forecast': f"{data['weather'][0]['main']} - {data['weather'][0]['description']}",
@@ -32,7 +32,7 @@ class Weather(commands.Cog, name='Weather'):
                 'Sunrise': (datetime.utcfromtimestamp(data['sys']['sunrise']) + timedelta(hours=2)).strftime('%H:%M:%S'),
             }
             return cleared_data
-        else:
+        except Exception as e:
             wrong_data = {
                 'Error': data['message'],
             }
