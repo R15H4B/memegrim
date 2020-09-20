@@ -44,6 +44,9 @@ class Weather(commands.Cog, name='Weather'):
         for index, entry in enumerate(data['list']):
             days[entry['dt_txt'][:10]].append(f"{entry['dt_txt'][11:-3]} → {entry['weather'][0]['main']} - {entry['main']['temp']}°C\n")
 
+        msg = await ctx.send(embed=embed)
+        for emoji in ["◀️", "▶️"]:
+            await msg.add_reaction(emoji)
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
