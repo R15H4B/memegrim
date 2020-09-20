@@ -75,7 +75,7 @@ class Music(commands.Cog, name='Music'):
         if not voice.is_playing():
             self.song_queue[ctx.guild] = [song]
             self.message[ctx.guild] = await ctx.send(embed=song['embed'])
-            filename = song['url'] + '-' + song['id'] +'.m4a'
+            filename = song['title'] + '-' + song['id'] +'.m4a'
             voice.play(FFmpegPCMAudio(filename), after=lambda e: self.play_next(ctx))
             # voice.play(FFmpegPCMAudio(song['source'], **Music.FFMPEG_OPTIONS), after=lambda e: self.play_next(ctx))
             voice.is_playing()
