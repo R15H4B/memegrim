@@ -49,13 +49,5 @@ class Weather(commands.Cog, name='Weather'):
             days[entry['dt_txt'][:10]].append(f"{entry['dt_txt'][11:-3]} → {entry['weather'][0]['main']} - {entry['main']['temp']}°C\n")
 
 
-        channel = self.bot.get_channel(payload.channel_id)
-        message = await channel.fetch_message(payload.message_id)
-        reaction = get(message.reactions, emoji=payload.emoji.name)
-        page = int(message.embeds[0].footer.text[5])
-        days = tuple((message.created_at+timedelta(days=i)).strftime("%Y-%m-%d") for i in range(0,6))
-
-
-
 def setup(bot):
     bot.add_cog(Weather(bot))
