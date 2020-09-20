@@ -36,8 +36,8 @@ class Weather(commands.Cog, name='Weather'):
         }
         return cleared_data
 
-    @commands.command(brief='!meteo [ville]', description="Météo et prévisons sur 5 jours d'une ville")
-    async def meteo(self, ctx,  *, city):
+    @commands.command(brief='weather [City]', description="Météo et prévisons sur 5 jours d'une ville")
+    async def weather(self, ctx,  *, city):
         data = Weather.get_cast(city)
         embed = Embed(title=f":white_sun_small_cloud: Météo à {data['City']} :", color=0x3498db)
         for key, value in data.items():
