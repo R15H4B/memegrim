@@ -41,7 +41,7 @@ class Weather(commands.Cog, name='Weather'):
     @commands.command(brief='weather [City]', description="Get weather forecast of a city")
     async def weather(self, ctx,  *, city):
         status, data = Weather.get_cast(city)
-        if not status: 
+        if status: 
             embed = Embed(title=f":white_sun_small_cloud: Weather of {data['City']}:", color=0x1abc9c)
         else:
             embed = Embed(title=f":City not found!", color=0x1abc9c)
