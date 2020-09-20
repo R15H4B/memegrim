@@ -38,7 +38,6 @@ class Weather(commands.Cog, name='Weather'):
         embed = Embed(title=f":white_sun_small_cloud: Weather:", color=0x3498db)
         for key, value in data.items():
             embed.add_field(name=key, value=value)
-        embed.set_footer(text="Page 1/6")
 
         data = Weather.get_cast(city, True)
         days = {entry['dt_txt'][:10]: [] for entry in data['list']}
