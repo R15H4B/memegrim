@@ -10,3 +10,7 @@ urllib3
 requests
 PyNaCl
 google-api-python-client
+wheel
+ffmpeg
+youtube_dl
+pygithub
