@@ -1,5 +1,6 @@
 import time
-from discord import *
+import discord
+from discord import Embed, Color
 import psutil
 import os
 
