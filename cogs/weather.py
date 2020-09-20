@@ -46,35 +46,6 @@ class Weather(commands.Cog, name='Weather'):
 
         msg = await ctx.send(embed=embed)
 
-    @commands.Cog.listener()
-    async def on_raw_reaction_add(self, payload):
-        user = self.bot.get_user(payload.user_id)
-        if not payload.emoji.name in ["◀️", "▶️"] or user.bot:
-            return
-
-        channel = self.bot.get_channel(payload.channel_id)
-        message = await channel.fetch_message(payload.message_id)
-        reaction = get(message.reactions, emoji=payload.emoji.name)
-        page = int(message.embeds[0].footer.text[5])
-        days = tuple((message.created_at+timedelta(days=i)).strftime("%Y-%m-%d") for i in range(0,6))
-
-
-        await reaction.remove(user)
-        if (page==1 and payload.emoji.name =="◀️") or (page==6 and payload.emoji.name =="▶️"):
-            return
-        data = data[page-2] if payload.emoji.name == "◀️" else data[page]
-        if page == 2 and datetime.now().strftime("%Y-%m-%d") == data[0]:
-            data = Weather.get_cast(data[1])
-            embed = (Embed(title=f":white_sun_small_cloud: Météo à {data['City']} :", color=0x3498db)
-                     .set_footer(text="Page 1/6"))
-            for key, value in data.items():
-                embed.add_field(name=key, value=value)
-        else:
-            embed = (Embed(title=f':white_sun_small_cloud: {data[0]} - Météo à {data[1]}:', color=0x3498db)
-                     .add_field(name=data[2], value='\u200b')
-                     .set_footer(text=f"Page {page-1}/6" if payload.emoji.name == "◀️" else f"Page {page+1}/6"))
-        await message.edit(embed=embed)
-
 
 def setup(bot):
     bot.add_cog(Weather(bot))
