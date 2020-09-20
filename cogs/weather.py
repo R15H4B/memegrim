@@ -43,10 +43,10 @@ class Weather(commands.Cog, name='Weather'):
         status, data = Weather.get_cast(city)
         if status: 
             embed = Embed(title=f":white_sun_small_cloud: Weather of {data['City']}:", color=0x1abc9c)
+            for key, value in data.items():
+                embed.add_field(name=key, value=value)
         else:
-            embed = Embed(title=f":City not found!", color=0x1abc9c)
-        for key, value in data.items():
-            embed.add_field(name=key, value=value)
+            embed = Embed(title=f"{data['message']}!", color=0x1abc9c)
 
         # data = Weather.get_cast(city, True)
         # days = {entry['dt_txt'][:10]: [] for entry in data['list']}
