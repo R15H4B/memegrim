@@ -344,4 +344,4 @@ class Fun_Commands(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Fun_Commands(bot))
+    bot.add_cog('\n' + Fun_Commands(bot))
