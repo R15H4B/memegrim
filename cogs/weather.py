@@ -49,15 +49,6 @@ class Weather(commands.Cog, name='Weather'):
         for index, entry in enumerate(data['list']):
             days[entry['dt_txt'][:10]].append(f"{entry['dt_txt'][11:-3]} → {entry['weather'][0]['main']} - {entry['main']['temp']}°C\n")
 
-        with connect('data.db') as conn:
-            c = conn.cursor()
-            for key in days.keys():
-                days[key] = ''.join(days[key])
-                c.execute('SELECT * FROM weather WHERE (Day=? AND City=?)', (key, data['city']['name']))
-                if c.fetchone() is None:
-                    c.execute("INSERT INTO weather(Day, City, Data) VALUES (?, ?, ?)", (key, data['city']['name'], days[key]))
-            conn.commit()
-
         msg = await ctx.send(embed=embed)
         for emoji in ["◀️", "▶️"]:
             await msg.add_reaction(emoji)
@@ -74,10 +65,6 @@ class Weather(commands.Cog, name='Weather'):
         page = int(message.embeds[0].footer.text[5])
         days = tuple((message.created_at+timedelta(days=i)).strftime("%Y-%m-%d") for i in range(0,6))
 
-        with connect('data.db') as conn:
-            c = conn.cursor()
-            c.execute("SELECT * FROM weather WHERE Day=? OR Day=? OR Day=? OR Day=? OR Day=? or Day=?", days)
-            data = [list(day) for day in c.fetchall()]
 
         await reaction.remove(user)
         if (page==1 and payload.emoji.name =="◀️") or (page==6 and payload.emoji.name =="▶️"):
