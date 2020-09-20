@@ -32,11 +32,11 @@ class Music(commands.Cog, name='Music'):
             except: info = ydl.extract_info(f"ytsearch:{arg}", download=False)['entries'][0]
             else: info = ydl.extract_info(arg, download=False)
 
-        embed = (Embed(title='🎵 Vidéo en cours:', description=f"[{info['title']}]({info['webpage_url']})", color=0x3498db)
+        embed = (Embed(title='🎵 Video in progress:', description=f"[{info['title']}]({info['webpage_url']})", color=0x3498db)
                 .add_field(name='Durée', value=Music.parse_duration(info['duration']))
                 .add_field(name='Demandée par', value=author)
                 .add_field(name='Chaine', value=f"[{info['uploader']}]({info['channel_url']})")
-                .add_field(name="File d'attente", value=f"Pas de vidéos en attente")
+                .add_field(name="File d'attente", value=f"No pending videos")
                 .set_thumbnail(url=info['thumbnail']))
 
         return {'embed': embed, 'source': info['formats'][0]['url'], 'title': info['title']}
@@ -58,7 +58,7 @@ class Music(commands.Cog, name='Music'):
             run_coroutine_threadsafe(voice.disconnect(), self.bot.loop)
             run_coroutine_threadsafe(self.message[ctx.guild].delete(), self.bot.loop)
 
-    @commands.command(aliases=['p'], brief='!play [url/mots]', description='Écouter une vidéo depuis un lien ou une recherche youtube')
+    @commands.command(aliases=['p'], brief='!play [url/mots]', description='Play a video from a youtube link or search')
     async def play(self, ctx, *, video: str):
         channel = ctx.author.voice.channel
         voice = get(self.bot.voice_clients, guild=ctx.guild)
@@ -79,27 +79,27 @@ class Music(commands.Cog, name='Music'):
             self.song_queue[ctx.guild].append(song)
             await self.edit_message(ctx)
 
-    @commands.command(brief='!pause', description='Mettre la vidéo en pause ou la reprendre')
+    @commands.command(brief='!pause', description='Pause or resume video')
     async def pause(self, ctx):
         voice = get(self.bot.voice_clients, guild=ctx.guild)
         if voice.is_connected():
             await ctx.message.delete()
             if voice.is_playing():
-                await ctx.send('⏸️ Vidéo en pause', delete_after=5.0)
+                await ctx.send('⏸️ Video paused', delete_after=5.0)
                 voice.pause()
             else:
-                await ctx.send('⏯️ Vidéo reprise', delete_after=5.0)
+                await ctx.send('⏯️ Resumed video', delete_after=5.0)
                 voice.resume()
 
-    @commands.command(brief='!skip', description='Skipper une vidéo')
+    @commands.command(brief='!skip', description='Skip a video')
     async def skip(self, ctx):
         voice = get(self.bot.voice_clients, guild=ctx.guild)
         if voice.is_playing():
             await ctx.message.delete()
-            await ctx.send('⏭️ Musique skippée', delete_after=5.0)
+            await ctx.send('⏭️ Skiped music', delete_after=5.0)
             voice.stop()
 
-    @commands.command(brief='!remove [index]', description="Supprimer une vidéo de la file d'attente")
+    @commands.command(brief='!remove [index]', description="Remove a video from the queue")
     async def remove(self, ctx, *, num: int):
         voice = get(self.bot.voice_clients, guild=ctx.guild)
         if voice.is_playing():
