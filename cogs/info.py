@@ -41,11 +41,9 @@ class Information(commands.Cog):
         """ About the bot """
         ramUsage = self.process.memory_full_info().rss / 1024**2
 
-        embedColour = discord.Embed.Empty
-        if hasattr(ctx, 'guild') and ctx.guild is not None:
-            embedColour = ctx.me.top_role.colour
 
-        embed = discord.Embed(colour=embedColour)
+        embed = discord.Embed(colour=0x1abc9c)
+        embed = Embed(title=f":information_source: About **{ctx.bot.user}** | **{self.config.version}**")
         embed.set_thumbnail(url=ctx.bot.user.avatar_url)
         embed.add_field(name="Last boot", value=default.timeago(datetime.now() - self.bot.uptime), inline=True)
         embed.add_field(
@@ -57,7 +55,7 @@ class Information(commands.Cog):
         embed.add_field(name="Commands loaded", value=len([x.name for x in self.bot.commands]), inline=True)
         embed.add_field(name="RAM", value=f"{ramUsage:.2f} MB", inline=True)
 
-        await ctx.send(content=f":information_source: About **{ctx.bot.user}** | **{self.config.version}**", embed=embed)
+        await ctx.send(embed=embed)
 
 
 def setup(bot):
