@@ -19,7 +19,12 @@ class Weather(commands.Cog, name='Weather'):
         if forecast:
             return rget(f"http://api.openweathermap.org/data/2.5/forecast?q={city}&units=metric&APPID={environ['WEATHER_TOKEN']}").json()
         data  = rget(f"http://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&APPID={environ['WEATHER_TOKEN']}").json()
-        cleared_data = {
+        if data['message'] = 'city not found':
+            cleared_data = {
+            'error': data['message']
+            }
+        else:
+            cleared_data = {
             'City': data['name'],
             'Weather forecast': f"{data['weather'][0]['main']} - {data['weather'][0]['description']}",
             'Temperature': f"{data['main']['temp']}°C",
@@ -29,7 +34,7 @@ class Weather(commands.Cog, name='Weather'):
             'Wind': f"{data['wind']['speed']} km/h",
             'Sunset': (datetime.utcfromtimestamp(data['sys']['sunset']) + timedelta(hours=2)).strftime('%H:%M:%S'),
             'Sunrise': (datetime.utcfromtimestamp(data['sys']['sunrise']) + timedelta(hours=2)).strftime('%H:%M:%S'),
-        }
+            }
         return cleared_data
 
     @commands.command(brief='weather [City]', description="Get weather forecast of a city")
