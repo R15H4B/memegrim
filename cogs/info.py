@@ -43,8 +43,7 @@ class Information(commands.Cog):
         ramUsage = self.process.memory_full_info().rss / 1024**2
 
 
-        embed = discord.Embed(colour=0x1abc9c)
-        embed = Embed(title=f":information_source: About **{ctx.bot.user}** | **{self.config.version}**")
+        embed = Embed(title=f":information_source: About **{ctx.bot.user}** | **{self.config.version}**", colour=0x1abc9c)
         embed.set_thumbnail(url=ctx.bot.user.avatar_url)
         embed.add_field(name="Last boot", value=default.timeago(datetime.now() - self.bot.uptime), inline=True)
         embed.add_field(
