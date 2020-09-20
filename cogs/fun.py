@@ -99,7 +99,7 @@ class Fun_Commands(commands.Cog):
         response = requests.get('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd')
         txt = response.text
         price = txt.replace('{"bitcoin":{"usd":', '**1 BTC =** **')
-        fprice = price.replace('}}', '** **USD**')
+        fprice = price.replace('}}', '** **$**')
         await ctx.send(fprice)
 
     @commands.command()
