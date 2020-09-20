@@ -42,7 +42,7 @@ class Weather(commands.Cog, name='Weather'):
     async def weather(self, ctx,  *, city):
         status, data = Weather.get_cast(city)
         if status: 
-            embed = Embed(title=f":white_sun_small_cloud: Weather of {data['City']}:", color=0x1abc9c)
+            embed = Embed(title=f":white_sun_small_cloud: Weather of {data['City']}", color=0x1abc9c)
             for key, value in data.items():
                 embed.add_field(name=key, value=value)
         else:
