@@ -32,7 +32,7 @@ class Weather(commands.Cog, name='Weather'):
         }
         return cleared_data
 
-    @commands.command(brief='weather [City]', description="Météo et prévisons sur 5 jours d'une ville")
+    @commands.command(brief='weather [City]', description="Get weather forecast of a city")
     async def weather(self, ctx,  *, city):
         data = Weather.get_cast(city)
         embed = Embed(title=f":white_sun_small_cloud: Weather:", color=0x3498db)
@@ -45,8 +45,6 @@ class Weather(commands.Cog, name='Weather'):
             days[entry['dt_txt'][:10]].append(f"{entry['dt_txt'][11:-3]} → {entry['weather'][0]['main']} - {entry['main']['temp']}°C\n")
 
         msg = await ctx.send(embed=embed)
-        for emoji in ["◀️", "▶️"]:
-            await msg.add_reaction(emoji)
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
