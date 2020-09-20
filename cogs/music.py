@@ -52,7 +52,7 @@ class Music(commands.Cog, name='Music'):
         if len(self.song_queue[ctx.guild]) > 1:
             del self.song_queue[ctx.guild][0]
             run_coroutine_threadsafe(self.edit_message(ctx), self.bot.loop)
-            voice.play(FFmpegPCMAudio(self.song_queue[ctx.guild][0]['source'], **Music.FFMPEG_OPTIONS), after=lambda e: self.play_next(ctx))
+            voice.play(FFmpegPCMAudio(self.song_queue[ctx.guild][0]['source'], **Music), after=lambda e: self.play_next(ctx))
             voice.is_playing()
         else:
             run_coroutine_threadsafe(voice.disconnect(), self.bot.loop)
@@ -73,7 +73,7 @@ class Music(commands.Cog, name='Music'):
         if not voice.is_playing():
             self.song_queue[ctx.guild] = [song]
             self.message[ctx.guild] = await ctx.send(embed=song['embed'])
-            voice.play(FFmpegPCMAudio(song['source'], **Music.FFMPEG_OPTIONS), after=lambda e: self.play_next(ctx))
+            voice.play(FFmpegPCMAudio(song['source'], **Music), after=lambda e: self.play_next(ctx))
             voice.is_playing()
         else:
             self.song_queue[ctx.guild].append(song)
