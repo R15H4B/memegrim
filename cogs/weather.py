@@ -9,7 +9,7 @@ from sqlite3 import connect
 
 class Weather(commands.Cog, name='Weather'):
     """
-    Utilisable par tout le monde et permet d'avoir des prévisions météo.
+    Can be used by everyone and provides weather forecasts.
     """
     def __init__(self, bot):
         self.bot = bot
