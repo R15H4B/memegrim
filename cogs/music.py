@@ -572,28 +572,6 @@ class MusicPlayer(commands.Cog,name='Music'):
         return await msg.send(f"**No songs currently playing**".title(),delete_after=30)
 
 
-
-    @command(aliases=['move-bot','move-b','mb','mbot'])
-    async def join(self, msg, *, channel: discord.VoiceChannel=None):
-        """
-        Make bot join a voice channel you are in if no channel is mentioned
-        `Ex:` .join (If voice channel name is entered, it'll join that one)
-        `Command:` join(channel:optional)
-        """
-        if msg.voice_client is not None:
-            return await msg.send(f"Bot is already in a voice channel\nDid you mean to use {msg.prefix}moveTo")
-
-        if msg.voice_client is None:
-            if channel is None:
-                return await msg.author.voice.channel.connect(), await msg.message.add_reaction(emoji='✅')
-            
-            return await channel.connect(), await msg.message.add_reaction(emoji='✅')
-        
-        else:
-            if msg.voice_client.is_playing() is False and not self.player[msg.guild.id]['queue']:
-                return await msg.author.voice.channel.connect(), await msg.message.add_reaction(emoji='✅')
-
-
     @join.before_invoke
     async def before_join(self,msg):
         if msg.author.voice is None:
