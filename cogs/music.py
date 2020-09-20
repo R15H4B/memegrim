@@ -39,7 +39,7 @@ class Music(commands.Cog, name='Music'):
                 .add_field(name="File d'attente", value=f"Pas de vidéos en attente")
                 .set_thumbnail(url=info['thumbnail']))
 
-        return {'embed': embed, 'source': info['formats'][0]['url'], 'title': info['title']}
+        return {'embed': embed, 'source': info['formats'][0]['url'], 'title': info['title'], 'id': info['id']}
 
     async def edit_message(self, ctx):
         embed = self.song_queue[ctx.guild][0]['embed']
