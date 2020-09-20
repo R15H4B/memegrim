@@ -1,5 +1,5 @@
 import time
-import discord
+from discord import *
 import psutil
 import os
 
