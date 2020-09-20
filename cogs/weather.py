@@ -21,12 +21,8 @@ class Weather(commands.Cog, name='Weather'):
         data  = rget(f"http://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&APPID={environ['WEATHER_TOKEN']}").json()
         cleared_data = {
             'City': data['name'],
-            'Hour': (datetime.utcfromtimestamp(data['dt']) + timedelta(hours=2)).strftime('%H:%M:%S'),
             'Weather forecast': f"{data['weather'][0]['main']} - {data['weather'][0]['description']}",
             'Temperature': f"{data['main']['temp']}°C",
-            'Feeling': f"{data['main']['feels_like']}°C",
-            'Temperature min': f"{data['main']['temp_min']}°C",
-            'Temperature max': f"{data['main']['temp_max']}°C",
             'Humidity': f"{data['main']['humidity']}%",
             'Pressure': f"{data['main']['pressure']} Pa",
             'Clouds': f"{data['clouds']['all']}%",
@@ -49,9 +45,6 @@ class Weather(commands.Cog, name='Weather'):
         for index, entry in enumerate(data['list']):
             days[entry['dt_txt'][:10]].append(f"{entry['dt_txt'][11:-3]} → {entry['weather'][0]['main']} - {entry['main']['temp']}°C\n")
 
-        msg = await ctx.send(embed=embed)
-        for emoji in ["◀️", "▶️"]:
-            await msg.add_reaction(emoji)
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
