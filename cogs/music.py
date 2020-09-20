@@ -11,7 +11,7 @@ class Music(commands.Cog, name='Music'):
     Utilisable par tout le monde et permet d'écouter des vidéos.
     """
     YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist':'True'}
-    FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
+    # FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
 
     def __init__(self, bot):
         self.bot = bot
@@ -30,7 +30,7 @@ class Music(commands.Cog, name='Music'):
         with YoutubeDL(Music.YDL_OPTIONS) as ydl:
             try: requests.get(arg)
             except: info = ydl.extract_info(f"ytsearch:{arg}", download=False)['entries'][0]
-            else: info = ydl.extract_info(arg, download=False)
+            else: info = ydl.extract_info(arg, download=True)
 
         embed = (Embed(title='🎵 Vidéo en cours:', description=f"[{info['title']}]({info['webpage_url']})", color=0x3498db)
                 .add_field(name='Durée', value=Music.parse_duration(info['duration']))
@@ -52,7 +52,9 @@ class Music(commands.Cog, name='Music'):
         if len(self.song_queue[ctx.guild]) > 1:
             del self.song_queue[ctx.guild][0]
             run_coroutine_threadsafe(self.edit_message(ctx), self.bot.loop)
-            voice.play(FFmpegPCMAudio(self.song_queue[ctx.guild][0]['source'], **Music.FFMPEG_OPTIONS), after=lambda e: self.play_next(ctx))
+            filename = song['url'] + '-' + song['id'] +'.m4a'
+            voice.play(FFmpegPCMAudio(filename), after=lambda e: self.play_next(ctx))
+            # voice.play(FFmpegPCMAudio(self.song_queue[ctx.guild][0]['source'], **Music.FFMPEG_OPTIONS), after=lambda e: self.play_next(ctx))
             voice.is_playing()
         else:
             run_coroutine_threadsafe(voice.disconnect(), self.bot.loop)
@@ -73,7 +75,9 @@ class Music(commands.Cog, name='Music'):
         if not voice.is_playing():
             self.song_queue[ctx.guild] = [song]
             self.message[ctx.guild] = await ctx.send(embed=song['embed'])
-            voice.play(FFmpegPCMAudio(song['source'], **Music.FFMPEG_OPTIONS), after=lambda e: self.play_next(ctx))
+            filename = song['url'] + '-' + song['id'] +'.m4a'
+            voice.play(FFmpegPCMAudio(filename), after=lambda e: self.play_next(ctx))
+            # voice.play(FFmpegPCMAudio(song['source'], **Music.FFMPEG_OPTIONS), after=lambda e: self.play_next(ctx))
             voice.is_playing()
         else:
             self.song_queue[ctx.guild].append(song)
