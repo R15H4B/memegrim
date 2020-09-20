@@ -39,7 +39,7 @@ class Music(commands.Cog, name='Music'):
                 .add_field(name="File d'attente", value=f"Pas de vidéos en attente")
                 .set_thumbnail(url=info['thumbnail']))
 
-        return {'embed': embed, 'source': info['formats'][0]['url'], 'title': info['title'], 'id': info['id']}
+        return {'embed': embed, 'source': info['formats'][0]['url'], 'title': info['title'], 'id': info['id'], 'ext': info['ext']}
 
     async def edit_message(self, ctx):
         embed = self.song_queue[ctx.guild][0]['embed']
@@ -52,7 +52,7 @@ class Music(commands.Cog, name='Music'):
         if len(self.song_queue[ctx.guild]) > 1:
             del self.song_queue[ctx.guild][0]
             run_coroutine_threadsafe(self.edit_message(ctx), self.bot.loop)
-            filename = song['url'] + '-' + song['id'] +'.m4a'
+            filename = song['url'] + '-' + song['id'] + '.' + song['ext']
             voice.play(FFmpegPCMAudio(filename), after=lambda e: self.play_next(ctx))
             # voice.play(FFmpegPCMAudio(self.song_queue[ctx.guild][0]['source'], **Music.FFMPEG_OPTIONS), after=lambda e: self.play_next(ctx))
             voice.is_playing()
@@ -75,7 +75,7 @@ class Music(commands.Cog, name='Music'):
         if not voice.is_playing():
             self.song_queue[ctx.guild] = [song]
             self.message[ctx.guild] = await ctx.send(embed=song['embed'])
-            filename = song['title'] + '-' + song['id'] +'.m4a'
+            filename = song['title'] + '-' + song['id'] + '.' + song['ext']
             voice.play(FFmpegPCMAudio(filename), after=lambda e: self.play_next(ctx))
             # voice.play(FFmpegPCMAudio(song['source'], **Music.FFMPEG_OPTIONS), after=lambda e: self.play_next(ctx))
             voice.is_playing()
