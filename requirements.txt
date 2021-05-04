@@ -1,4 +1,5 @@
 discord
+discord.py
 praw
 asyncio
 psutil
