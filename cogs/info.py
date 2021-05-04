@@ -42,13 +42,12 @@ class Information(commands.Cog):
         """ About the bot """
         ramUsage = self.process.memory_full_info().rss / 1024**2
 
-
         embed = Embed(title=f":information_source: About **{ctx.bot.user}** | **{self.config.version}**", colour=0x1abc9c)
         embed.set_thumbnail(url=ctx.bot.user.avatar_url)
         embed.add_field(name="Last boot", value=default.timeago(datetime.now() - self.bot.uptime), inline=True)
         embed.add_field(
             name=f"Developer{'' if len(self.config.owners) == 1 else 's'}",
-            value=', '.join([str(self.bot.get_user(x)) for x in self.config.owners]),
+            value='xy0ke#1954',
             inline=True)
         embed.add_field(name="Library", value="discord.py", inline=True)
         embed.add_field(name="Servers", value=f"{len(ctx.bot.guilds)} ( {len(self.bot.users)} users )", inline=True)
