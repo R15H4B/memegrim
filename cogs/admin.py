@@ -117,11 +117,11 @@ class Admin(commands.Cog):
         except discord.Forbidden:
             await ctx.send("This user might be having DMs blocked or it's a bot account...")
 
-    @commands.group()
-    @commands.check(permissions.is_owner)
-    async def change(self, ctx):
-        if ctx.invoked_subcommand is None:
-            await ctx.send_help(str(ctx.command))
+#     @commands.group()
+#     @commands.check(permissions.is_owner)
+#     async def change(self, ctx):
+#         if ctx.invoked_subcommand is None:
+#             await ctx.send_help(str(ctx.command))
 
     @change.command(name="playing")
     @commands.check(permissions.is_owner)
