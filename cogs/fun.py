@@ -76,7 +76,7 @@ class Fun_Commands(commands.Cog):
         
     @commands.command()
     @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
-    async def fac(self, ctx):
+    async def fact(self, ctx):
         """ Posts a random fact """
         response = requests.get('https://api.leaked.wiki/randomfact?json=no')
         await ctx.send(response.text)     
