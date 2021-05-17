@@ -73,15 +73,24 @@ class Fun_Commands(commands.Cog):
         """ Posts a random joke """
         response = requests.get('https://sv443.net/jokeapi/v2/joke/Any?blacklistFlags=nsfw,political,sexist&format=txt')
         await ctx.send(response.text)
+        
+    @commands.command()
+    @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
+    async def joke(self, ctx):
+        """ Posts a random fact """
+        response = requests.get('https://api.leaked.wiki/randomfact?json=no')
+        await ctx.send(response.text)     
+        
 
     @commands.command()
-    async def greet(self, ctx, *, user: discord.Member = None):
-        """ Greetings from bot to somone """
+    async def insult(self, ctx, *, user: discord.Member = None):
+        """ Insults someone """
+        response = requests.get('https://api.leaked.wiki/randominsult?json=no')
         user = user or ctx.author
         if user.id == self.bot.user.id:
-            return await ctx.send(f"Greeting myself!")
+            return await ctx.send(f"Not gonna insult myself!")
         else:
-            return await ctx.send(f"Hello **{user.name}**!")
+            return await ctx.send(f"**{user.name}**, {response.text}")
         
 
     @commands.command()
