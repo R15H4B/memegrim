@@ -21,33 +21,30 @@ class Admin(commands.Cog):
         if ctx.author.id in self.config.owners:
             return await ctx.send(f"Yes **{ctx.author.name}** you are an admin! :white_check_mark:")
 
-        # Please do not remove this part.
-        # I would love to be credited as the original creator of the source code.
-        #   -- AlexFlipnote
-        if ctx.author.id == 690090085059919933:
-            return await ctx.send(f"Well kinda **{ctx.author.name}**.. you still own the source code")
+#         if ctx.author.id == 690090085059919933:
+#             return await ctx.send(f"Well kinda **{ctx.author.name}**.. you still own the source code")
 
         await ctx.send(f"no, heck off {ctx.author.name}")
 
-    @commands.command()
-    @commands.check(permissions.is_owner)
-    async def load(self, ctx, name: str):
-        """ Loads an extension. """
-        try:
-            self.bot.load_extension(f"cogs.{name}")
-        except Exception as e:
-            return await ctx.send(default.traceback_maker(e))
-        await ctx.send(f"Loaded extension **{name}.py**")
+#     @commands.command()
+#     @commands.check(permissions.is_owner)
+#     async def load(self, ctx, name: str):
+#         """ Loads an extension. """
+#         try:
+#             self.bot.load_extension(f"cogs.{name}")
+#         except Exception as e:
+#             return await ctx.send(default.traceback_maker(e))
+#         await ctx.send(f"Loaded extension **{name}.py**")
 
-    @commands.command()
-    @commands.check(permissions.is_owner)
-    async def unload(self, ctx, name: str):
-        """ Unloads an extension. """
-        try:
-            self.bot.unload_extension(f"cogs.{name}")
-        except Exception as e:
-            return await ctx.send(default.traceback_maker(e))
-        await ctx.send(f"Unloaded extension **{name}.py**")
+#     @commands.command()
+#     @commands.check(permissions.is_owner)
+#     async def unload(self, ctx, name: str):
+#         """ Unloads an extension. """
+#         try:
+#             self.bot.unload_extension(f"cogs.{name}")
+#         except Exception as e:
+#             return await ctx.send(default.traceback_maker(e))
+#         await ctx.send(f"Unloaded extension **{name}.py**")
 
     @commands.command()
     @commands.check(permissions.is_owner)
@@ -98,13 +95,13 @@ class Admin(commands.Cog):
             return await ctx.send(f"Module **{name_maker}** returned error and was not reloaded...\n{error}")
         await ctx.send(f"Reloaded module **{name_maker}**")
 
-    @commands.command()
-    @commands.check(permissions.is_owner)
-    async def reboot(self, ctx):
-        """ Reboot the bot """
-        await ctx.send('Rebooting now...')
-        time.sleep(1)
-        sys.exit(0)
+#     @commands.command()
+#     @commands.check(permissions.is_owner)
+#     async def reboot(self, ctx):
+#         """ Reboot the bot """
+#         await ctx.send('Rebooting now...')
+#         time.sleep(1)
+#         sys.exit(0)
 
     @commands.command()
     @commands.check(permissions.is_owner)
